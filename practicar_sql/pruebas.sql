@@ -1,3 +1,5 @@
+
+--Bloques
 set serveroutput on
 set verify off
 set echo off
@@ -18,6 +20,8 @@ begin
 dep_ins(&id_dep, '&nom_dep', &man_dep, '&loc_dep');
 end;
 
+--procedures
+--ej1
 create or replace
 procedure nomEmp(id_emp number)
 is
@@ -30,7 +34,24 @@ where employee_id = id_emp;
 dbms_output.put_line('El empleado es: '||empleados.employee_id||'  '||empleados.first_name||'  '||empleados.job_id||'  '||empleados.salary);
 dep(empleados.department_id);
 end;
-
+--ej2
+create or replace
+procedure dep(id_dep number)
+is
+departamentos departments%ROWTYPE;
+begin
+select *
+into departamentos
+from departments
+where department_id = id_dep;
+dbms_output.put_line('El departamento es: '||departamentos.department_id||'  '||departamentos.department_name||'  '||departamentos.manager_id||'  '||departamentos.location_id);
+exception
+when no_data_found then
+dbms_output.put_line('el id: '||id_dep||' no existe');
+when others then
+dbms_output.put_line('Error indeterminado... ');
+end;
+--ej3
 create or replace
 procedure dep(id_dep number)
 is
@@ -48,23 +69,7 @@ when others then
 dbms_output.put_line('Error indeterminado... ');
 end;
 
-create or replace
-procedure dep(id_dep number)
-is
-departamentos departments%ROWTYPE;
-begin
-select *
-into departamentos
-from departments
-where department_id = id_dep;
-dbms_output.put_line('El departamento es: '||departamentos.department_id||'  '||departamentos.department_name||'  '||departamentos.manager_id||'  '||departamentos.location_id);
-exception
-when no_data_found then
-dbms_output.put_line('el id: '||id_dep||' no existe');
-when others then
-dbms_output.put_line('Error indeterminado... ');
-end;
-
+--ej4
 create or replace
 procedure Emp(emp_id number)
 is
