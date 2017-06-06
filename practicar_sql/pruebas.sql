@@ -17,7 +17,7 @@ accept nom_dep prompt 'inserta un nombre de departamento'
 accept man_dep prompt 'inserta el manager id'
 accept loc_dep prompt 'inserta la localizacion'
 begin
-dep_ins(&id_dep, '&nom_dep', &man_dep, '&loc_dep');
+dep_ins(&id_dep, '&nom_dep', &man_dep, &loc_dep);
 end;
 
 --procedures
@@ -53,20 +53,12 @@ dbms_output.put_line('Error indeterminado... ');
 end;
 --ej3
 create or replace
-procedure dep(id_dep number)
+procedure dep_ins(id_dep number, nom_dep varchar, man_dep number, loc_dep number)
 is
-departamentos departments%ROWTYPE;
 begin
-select *
-into departamentos
-from departments
-where department_id = id_dep;
-dbms_output.put_line('El departamento es: '||departamentos.department_id||'  '||departamentos.department_name||'  '||departamentos.manager_id||'  '||departamentos.location_id);
-exception
-when no_data_found then
-dbms_output.put_line('el id: '||id_dep||' no existe');
-when others then
-dbms_output.put_line('Error indeterminado... ');
+insert into departments
+values(id_dep, nom_dep, man_dep, loc_dep);
+dbms_output.put_line('Department inserted');
 end;
 
 --ej4
