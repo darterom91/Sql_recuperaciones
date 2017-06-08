@@ -76,3 +76,39 @@ set echo off
 begin
 GESTO_VENTES.AUMENTAR_COM();
 end;
+
+-- ejercicio 3
+
+-- num vendedor
+set serveroutput on
+set verify off
+set echo off
+accept idVend prompt 'Introduce el num vendedor'
+accept num prompt 'introduce el num nuevo'  
+begin
+update vendedor
+set num_vendedor = &num 
+where num_vendedor = &idVend;
+end;
+-- dni
+set serveroutput on
+set verify off
+set echo off
+accept dniV prompt 'Introduce el dni vendedor'
+accept num prompt 'introduce el dni nuevo'  
+begin
+update vendedor
+set DNI = &num 
+where DNI = &dniV;
+end;
+-- ofi
+set serveroutput on
+set verify off
+set echo off
+accept cod_ofi prompt 'Introduce el cod ofi vendedor'
+accept num prompt 'introduce el num nuevo'  
+begin
+update vendedor
+set cod_oficina = &num 
+where cod_oficina = &cod_ofi;
+end;
