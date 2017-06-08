@@ -3,7 +3,7 @@ drop table producto;
 drop table vendedor;
 drop table cliente;
 drop table oficina;
-
+drop table prod_audit;
 
 create table vendedor
 (
@@ -63,5 +63,5 @@ create table pedido
   (
     Idprod number(4),
     DataCanvi date default sysdate,
-    Operacio  varchar2
+    Operacio  varchar2(1)
   );
