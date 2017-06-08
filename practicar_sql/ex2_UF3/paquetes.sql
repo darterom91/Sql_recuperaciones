@@ -23,3 +23,27 @@ as
        
   end aumentar_com;  
 end;
+
+
+drop package gestion_cliente;
+
+  create or replace package gestion_cliente
+  as
+  procedure aumentar_com(idCli number, dniCli number, nom varchar);
+  end;
+
+
+create or replace package body gestion_cliente
+as
+  procedure aumentar_com(idCli number, dniCli number, nom varchar)
+  as
+  begin
+    insert into cliente(numclie, dni, nombre)
+    values(idCli, dniCli, nom);
+      dbms_output.put_line('cliente insertado!!');    
+    exception
+    when others then
+      dbms_output.put_line('Erron sin sentido');
+  end aumentar_com;  
+end;
+
