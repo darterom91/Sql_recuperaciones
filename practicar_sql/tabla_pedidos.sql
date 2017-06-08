@@ -58,3 +58,10 @@ create table pedido
     constraint pedido_producto_fk foreign key (idprod) references producto (idprod),
     constraint pedido_vendedor_fk foreign key (num_vendedor) references vendedor (num_vendedor)
   );
+
+  create table prod_audit
+  (
+    Idprod number(4),
+    DataCanvi date default sysdate,
+    Operacio  varchar2
+  );
